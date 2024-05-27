@@ -1,0 +1,29 @@
+﻿@page "/aimodels"
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject BlazorAiApp.Data.ApplicationDbContext DB
+@using BlazorAiApp.Data
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="aimodels/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="DB.AiModel">
+    <PropertyColumn Property="aimodel => aimodel.Name" />
+    <PropertyColumn Property="aimodel => aimodel.ModelRepo" />
+    <PropertyColumn Property="aimodel => aimodel.Description" />
+    <PropertyColumn Property="aimodel => aimodel.Author" />
+    <PropertyColumn Property="aimodel => aimodel.ChatHistory" />
+    <PropertyColumn Property="aimodel => aimodel.ChatHistory_List" />
+    <PropertyColumn Property="aimodel => aimodel.CreateDate" />
+    <PropertyColumn Property="aimodel => aimodel.Number" />
+
+    <TemplateColumn Context="aimodel">
+        <a href="@($"aimodels/edit?id={aimodel.Id}")">Edit</a> |
+        <a href="@($"aimodels/details?id={aimodel.Id}")">Details</a> |
+        <a href="@($"aimodels/delete?id={aimodel.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>

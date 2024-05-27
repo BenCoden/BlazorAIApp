@@ -1,0 +1,44 @@
+﻿@page "/aimodels/details"
+@inject BlazorAiApp.Data.ApplicationDbContext DB
+@using BlazorAiApp.Data
+@inject NavigationManager NavigationManager
+@using Microsoft.EntityFrameworkCore
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h4>AiModel</h4>
+    <hr />
+    @if (aimodel is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">Name</dt>
+            <dd class="col-sm-10">@aimodel.Name</dd>
+            <dt class="col-sm-2">ModelRepo</dt>
+            <dd class="col-sm-10">@aimodel.ModelRepo</dd>
+            <dt class="col-sm-2">Description</dt>
+            <dd class="col-sm-10">@aimodel.Description</dd>
+            <dt class="col-sm-2">Author</dt>
+            <dd class="col-sm-10">@aimodel.Author</dd>
+            <dt class="col-sm-2">ChatHistory</dt>
+            <dd class="col-sm-10">@aimodel.ChatHistory</dd>
+            <dt class="col-sm-2">ChatHistory_List</dt>
+            <dd class="col-sm-10">@aimodel.ChatHistory_List</dd>
+            <dt class="col-sm-2">CreateDate</dt>
+            <dd class="col-sm-10">@aimodel.CreateDate</dd>
+            <dt class="col-sm-2">Number</dt>
+            <dd class="col-sm-10">@aimodel.Number</dd>
+        </dl>
+        <div>
+            <a href="@($"/aimodels/edit?id={aimodel.Id}")">Edit</a> |
+            <a href="@($"/aimodels")">Back to List</a>
+        </div>
+    }
+</div>
+
+

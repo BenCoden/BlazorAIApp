@@ -1,0 +1,75 @@
+﻿@page "/AiModels/edit"
+@inject BlazorAiApp.Data.ApplicationDbContext DB
+@using BlazorAiApp.Data
+@inject NavigationManager NavigationManager
+@using Microsoft.EntityFrameworkCore
+
+<PageTitle>Edit</PageTitle>
+
+<h1>Edit</h1>
+
+<h4>AiModel</h4>
+<hr />
+@if (AiModel is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="AiModel" OnValidSubmit="UpdateAiModel" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <input type="hidden" name="AiModel.Id" value="@AiModel.Id" />
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <InputText id="name" @bind-Value="AiModel.Name" class="form-control" />
+                    <ValidationMessage For="() => AiModel.Name" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="modelrepo" class="form-label">ModelRepo:</label>
+                    <InputText id="modelrepo" @bind-Value="AiModel.ModelRepo" class="form-control" />
+                    <ValidationMessage For="() => AiModel.ModelRepo" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description:</label>
+                    <InputText id="description" @bind-Value="AiModel.Description" class="form-control" />
+                    <ValidationMessage For="() => AiModel.Description" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="author" class="form-label">Author:</label>
+                    <InputText id="author" @bind-Value="AiModel.Author" class="form-control" />
+                    <ValidationMessage For="() => AiModel.Author" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="chathistory" class="form-label">ChatHistory:</label>
+                    @* <InputText id="chathistory" @bind-Value="AiModel.ChatHistory" class="form-control" /> *@
+                    <ValidationMessage For="() => AiModel.ChatHistory" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="chathistory_list" class="form-label">ChatHistory_List:</label>
+                    @* <InputText id="chathistory_list" @bind-Value="AiModel.ChatHistory_List" class="form-control" /> *@
+                    <ValidationMessage For="() => AiModel.ChatHistory_List" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="createdate" class="form-label">CreateDate:</label>
+                    <InputDate id="createdate" @bind-Value="AiModel.CreateDate" class="form-control" />
+                    <ValidationMessage For="() => AiModel.CreateDate" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="number" class="form-label">Number:</label>
+                    <InputNumber id="number" @bind-Value="AiModel.Number" class="form-control" />
+                    <ValidationMessage For="() => AiModel.Number" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </EditForm>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="/aimodels">Back to List</a>
+</div>
+
+
